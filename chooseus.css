@@ -1,0 +1,145 @@
+/* CHOOSE US Section */
+.choose {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.section__subtitle {
+    color: #ff7b54;
+    font-size: 1.5rem;
+}
+
+.section__titles {
+    margin-top: 20px;
+}
+
+.section__title-border {
+    color: #333;
+    font-size: 3rem;
+    display: inline-block;
+    border-bottom: 4px solid #ff7b54;
+    padding-bottom: 10px;
+}
+
+.section__title {
+    color: #333;
+    font-size: 3rem;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.choose__overflow {
+    position: relative;
+    z-index: 1;
+}
+
+.choose__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    align-items: center;
+}
+
+.choose__content {
+    text-align: center;
+}
+
+.choose__description {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.choose__data {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.choose__group {
+    text-align: center;
+}
+
+.choose__number {
+    color: #ff7b54;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.choose__subtitle {
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.choose__images {
+    position: relative;
+}
+
+.choose__img {
+    max-width: 100%;
+    height: auto;
+}
+
+.choose__triangle {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #ff7b54;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+.choose__triangle-1 {
+    top: -30px;
+    left: -30px;
+}
+
+.choose__triangle-2 {
+    top: -30px;
+    right: -30px;
+}
+
+.choose__triangle-3 {
+    bottom: -30px;
+    right: -30px;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .section__title-border,
+    .section__title {
+        font-size: 2.5rem;
+    }
+
+    .choose__description {
+        font-size: 1rem;
+    }
+
+    .choose__number {
+        font-size: 1.5rem;
+    }
+
+    .choose__subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .section__title-border,
+    .section__title {
+        font-size: 2rem;
+    }
+
+    .choose__description {
+        font-size: 0.9rem;
+    }
+
+    .choose__number {
+        font-size: 1.3rem;
+    }
+
+    .choose__subtitle {
+        font-size: 0.9rem;
+    }
+}

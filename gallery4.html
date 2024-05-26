@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Gallery</title>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+         /* Caption styles */
+         .caption {
+            font-weight: bold;
+            color: #fcb045; /* Adjust the color as needed */
+            text-align: center;
+        }
+        /* Resetting box-sizing and border styles */
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb;
+        }
+
+        /* Global body styles */
+        body {
+            font-family: "Barlow", Arial, Helvetica, sans-serif;
+            color: #6a6a8e;
+            font-weight: 500;
+            font-style: normal;
+            line-height: 1.5;
+            font-size: 16px;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Background video styles */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Content wrapper to ensure it's above the video */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Gallery styles */
+        .grid-wrapper {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .gallery .video-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gallery video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery video:hover {
+            transform: scale(1.1);
+        }
+
+        .gallery .caption {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #e59024;
+            text-align: center;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+            transition: transform 0.3s;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1.1);
+        }
+
+        .close {
+            color: #fff;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            cursor: pointer;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            user-select: none;
+            z-index: 1001;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        @media (min-width: 768px) {
+            .modal-content {
+                width: 63%;
+                max-height: 65%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Video -->
+    <video autoplay muted loop class="video-background">
+        <source src="assets/css/img/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <div id="header"></div>
+        <div class="container mx-auto">
+            <h3 class="text-left text-[#fcb045] font-[poppins]">
+                <b>Gallery</b>
+            </h3>
+            <div class="grid-wrapper">
+                <div class="gallery">
+                    <div class="video-container border-4 border-dashed border-orange-400 cursor-pointer">
+                        <video src="assets/css/img/strenght1.mp4" poster="assets/css/img/poster1.jpg" onclick="openModal(this)"></video>
+                        <div class="caption">Caption 1</div>
+                    </div>
+                    <div class="video-container border-4 border-dashed border-orange-400 cursor-pointer">
+                        <video src="assets/css/img/strenght2.mp4" poster="assets/css/img/poster2.jpg" onclick="openModal(this)"></video>
+                        <div class="caption">Caption 2</div>
+                    </div>
+                    <div class="video-container border-4 border-dashed border-orange-400 cursor-pointer">
+                        <video src="assets/css/img/strength3.mp4" poster="assets/css/img/poster3.jpg" onclick="openModal(this)"></video>
+                        <div class="caption">Caption 3</div>
+                    </div>
+                    <!-- Add more videos as needed -->
+                    <div class="video-container border-4 border-dashed border-orange-400 cursor-pointer">
+                        <video src="assets/css/img/strenght4.mp4" poster="assets/css/img/poster4.webp" onclick="openModal(this)"></video>
+                        <div class="caption">Caption 4</div>
+                    </div>
+                    <div class="video-container border-4 border-dashed border-orange-400 cursor-pointer">
+                        <video src="assets/css/img/strenght5.mp4" poster="assets/css/img/poster5.webp" onclick="openModal(this)"></video>
+                        <div class="caption">Caption 5</div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="myModal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <video controls class="modal-content" id="modalVideo"></video>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <footer>
+        <div id="footer"></div>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+
+        // Function to open the modal
+        function openModal(video) {
+            const modal = document.getElementById("myModal");
+            const modalVideo = document.getElementById("modalVideo");
+            modal.style.display = "flex";
+            modalVideo.src = video.src;
+            modalVideo.play(); // Automatically play the video when the modal opens
+            slideIndex = Array.from(video.parentNode.parentNode.children).indexOf(video.parentNode);
+            setTimeout(() => modal.classList.add("show"), 10);
+            modal.focus();
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById("myModal");
+            const modalVideo = document.getElementById("modalVideo");
+            modal.classList.remove("show");
+            setTimeout(() => {
+                modal.style.display = "none";
+                modalVideo.pause(); // Pause the video when the modal is closed
+                modalVideo.src = ""; // Reset the video source
+            }, 300);
+        }
+
+        // Function to navigate to the previous or next slide
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Function to handle keyboard events for navigating slides
+        function handleKeyboardEvent(event) {
+            if (document.getElementById("myModal").style.display === "flex") {
+                switch (event.key) {
+                    case "ArrowLeft":
+                        plusSlides(-1);
+                        break;
+                    case "ArrowRight":
+                        plusSlides(1);
+                        break;
+                    case "Escape":
+                        closeModal();
+                        break;
+                }
+            }
+        }
+
+        // Function to show the slides
+        function showSlides(n) {
+            const modalVideo = document.getElementById("modalVideo");
+            const gallery = document.querySelectorAll(".gallery > div > video");
+            if (n >= gallery.length) {
+                slideIndex = 0;
+            }
+            if (n < 0) {
+                slideIndex = gallery.length - 1;
+            }
+            modalVideo.src = gallery[slideIndex].src;
+            modalVideo.play(); // Automatically play the new video
+        }
+
+        // Event listener to handle keyboard events
+        document.addEventListener("keydown", handleKeyboardEvent);
+
+        // Fetch the footer content
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            })
+            .catch(error => console.error('There was a problem fetching the footer:', error));
+
+        // Fetch the header content
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header').innerHTML = html;
+            })
+            .catch(error => console.error('There was a problem fetching the header:', error));
+    </script>
+</body>
+
+</html>
